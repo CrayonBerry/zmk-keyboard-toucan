@@ -9,6 +9,7 @@
 #define NAV   3
 #define FN    4
 #define MEDIA 5
+#define GAME  6
 
 / {
     keymap {
@@ -17,7 +18,7 @@
         base {
             display-name = "BASE";
             bindings = <
-&kp ESC  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp I  &kp O  &kp P  &kp BSPC  &kp LGUI  &mt LEFT_GUI A  &mt LEFT_ALT S  &mt LEFT_CONTROL D  &mt LEFT_SHIFT F  &kp G  &kp H  &mt RIGHT_SHIFT J  &mt RIGHT_CONTROL K  &mt RIGHT_ALT L  &mt RIGHT_GUI SEMICOLON  &kp RET  &kp TAB  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp DELETE  &lt MEDIA ESC  &lt SYM BSPC  &lt NUM SPACE  &lt NAV RET  &lt FN TAB  &kp DELETE
+&kp ESC  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp I  &kp O  &kp P  &kp BSPC  &kp LGUI  &mt LEFT_GUI A  &mt LEFT_ALT S  &mt LEFT_CONTROL D  &mt LEFT_SHIFT F  &kp G  &kp H  &mt RIGHT_SHIFT J  &mt RIGHT_CONTROL K  &mt RIGHT_ALT L  &mt RIGHT_GUI SEMICOLON  &kp RET  &kp TAB  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp DELETE  &lt MEDIA ESC  &lt SYM BSPC  &lt NUM SPACE  &lt NAV RET  &lt FN TAB  &tog GAME
             >;
         };
 
@@ -53,6 +54,13 @@
             display-name = "MEDIA";
             bindings = <
 &none  &none  &kp C_PREV  &kp C_PP  &kp C_NEXT  &none  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none  &none  &none  &kp C_VOL_DN  &kp C_MUTE  &kp C_VOL_UP  &none  &none  &none  &none  &none  &bt BT_CLR  &none  &none  &none  &kp C_BRI_DN  &none  &kp C_BRI_UP  &none  &none  &none  &none  &none  &none  &none  &trans  &trans  &trans  &trans  &trans  &trans
+            >;
+        };
+
+        game {
+            display-name = "GAME";
+            bindings = <
+&kp ESC  &kp N1  &kp N2  &kp W  &kp E  &kp R  &none  &none  &none  &none  &none  &none  &kp TAB  &kp Q  &kp A  &kp S  &kp D  &kp F  &none  &none  &none  &none  &none  &none  &kp LSHIFT  &kp Z  &kp X  &kp C  &kp V  &kp G  &none  &none  &none  &none  &none  &none  &kp LCTRL  &kp SPACE  &tog GAME  &none  &none  &none
             >;
         };
     };
