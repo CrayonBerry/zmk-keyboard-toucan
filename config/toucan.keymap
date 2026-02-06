@@ -12,13 +12,86 @@
 #define GAME  6
 
 / {
+    behaviors {
+        // Custom mod-tap behavior with all configurable properties
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+
+            // Time (in ms) you need to hold the key to activate the hold behavior
+            // Default is 200ms. Increase if you're getting mods when you want taps.
+            tapping-term-ms = <200>;
+
+            // Flavor determines the decision logic for tap vs hold:
+            // - "tap-preferred": Prioritize tap, only hold if no other key pressed during tapping-term
+            // - "hold-preferred": Prioritize hold if held longer than tapping-term
+            // - "balanced": Tap if released before tapping-term, hold if another key pressed during
+            // - "tap-unless-interrupted": Always tap unless another key is pressed during tapping-term
+            flavor = "balanced";
+
+            // If enabled, tapping the key after the tapping-term will still produce a tap
+            // Useful for double-tapping letters quickly
+            retro-tap;
+
+            // Time (in ms) to allow quick successive taps without triggering hold
+            // If you tap within this time of releasing, it will always tap (useful for rolling keys)
+            // Default is disabled (0). Set to 125-200ms to allow quick double-taps.
+            quick-tap-ms = <125>;
+
+            // Requires this many ms of idle time before the hold behavior can activate
+            // Helps prevent accidental holds when typing fast
+            // Default is disabled (0). Try 100-150ms if you get unwanted mods while typing.
+            require-prior-idle-ms = <100>;
+
+            // Positional hold-tap: specify key positions that trigger hold when pressed
+            // Useful for home row mods - only trigger mod when opposite hand keys are pressed
+            // Leave empty to disable, or add an array of key position numbers
+            // hold-trigger-key-positions = <>;
+
+            // If true, hold behavior triggers on key release instead of during hold
+            // Can make the behavior feel more responsive
+            // hold-trigger-on-release;
+
+            bindings = <&kp>, <&kp>;
+        };
+
+        // Custom layer-tap behavior with all configurable properties
+        lt_custom: layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+
+            // Time (in ms) you need to hold the key to activate the layer
+            // Default is 200ms. Increase if you're accidentally activating layers.
+            tapping-term-ms = <200>;
+
+            // Flavor determines the decision logic (same options as mod-tap above)
+            // For layer-taps, "tap-preferred" or "balanced" are most common
+            flavor = "tap-preferred";
+
+            // If enabled, tapping after tapping-term will produce the tap behavior
+            retro-tap;
+
+            // Quick-tap allows rapid repeated taps without activating the layer
+            // Useful for thumb keys that might be pressed repeatedly
+            quick-tap-ms = <125>;
+
+            // Requires idle time before layer activation (helps prevent accidental layer switches)
+            require-prior-idle-ms = <100>;
+
+            // Positional hold-tap for layer-taps (less commonly used than with mods)
+            // hold-trigger-key-positions = <>;
+
+            bindings = <&mo>, <&kp>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         base {
             display-name = "BASE";
             bindings = <
-&kp ESC  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp I  &kp O  &kp P  &kp BSPC  &kp LGUI  &mt LEFT_GUI A  &mt LEFT_ALT S  &mt LEFT_CONTROL D  &mt LEFT_SHIFT F  &kp G  &kp H  &mt RIGHT_SHIFT J  &mt RIGHT_CONTROL K  &mt RIGHT_ALT L  &mt RIGHT_GUI SEMICOLON  &kp SINGLE_QUOTE  &kp TAB  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp DELETE  &lt MEDIA ESC  &lt SYM BSPC  &lt NUM SPACE  &lt NAV RET  &lt FN TAB  &tog GAME
+&kp ESC  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp I  &kp O  &kp P  &kp BSPC  &kp LGUI  &hm LEFT_GUI A  &hm LEFT_ALT S  &hm LEFT_CONTROL D  &hm LEFT_SHIFT F  &kp G  &kp H  &hm RIGHT_SHIFT J  &hm RIGHT_CONTROL K  &hm RIGHT_ALT L  &hm RIGHT_GUI SEMICOLON  &kp SINGLE_QUOTE  &kp TAB  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp DELETE  &lt_custom MEDIA ESC  &lt_custom SYM BSPC  &lt_custom NUM SPACE  &lt_custom NAV RET  &lt_custom FN TAB  &tog GAME
             >;
         };
 
