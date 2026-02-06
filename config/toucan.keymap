@@ -60,7 +60,7 @@
         game {
             display-name = "GAME";
             bindings = <
-&kp ESC  &kp N1  &kp N2  &kp W  &kp E  &kp R  &none  &none  &none  &none  &none  &none  &kp TAB  &kp Q  &kp A  &kp S  &kp D  &kp F  &none  &none  &none  &none  &none  &none  &kp LSHIFT  &kp Z  &kp X  &kp C  &kp V  &kp G  &none  &none  &none  &none  &none  &none  &kp LCTRL  &kp SPACE  &tog GAME  &none  &none  &none
+&kp ESC  &kp N1  &kp N2  &kp W  &kp E  &kp R  &none  &none  &none  &none  &none  &tog GAME  &kp TAB  &kp Q  &kp A  &kp S  &kp D  &kp F  &none  &none  &none  &none  &none  &none  &kp LEFT_SHIFT  &kp Z  &kp X  &kp C  &kp V  &kp G  &none  &none  &none  &none  &none  &none  &kp LCTRL  &kp LSHIFT  &kp SPACE  &none  &none  &none
             >;
         };
     };
